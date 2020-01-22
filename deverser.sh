@@ -16,7 +16,6 @@ else
         echo "[!] Downloading latest img4tool from Tihmstar's repo..."
         latestBuild=$(curl --silent "https://api.github.com/repos/tihmstar/img4tool/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         link="https://github.com/tihmstar/img4tool/releases/download/${latestBuild}/buildroot_macos-latest.zip"
-        echo "$link"
         curl -L "$link" --output img4tool-latest.zip
         mkdir img4tool
         unzip -q img4tool-latest.zip -d img4tool
