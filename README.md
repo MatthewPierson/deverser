@@ -34,6 +34,6 @@ Any ideas/fixes/improvements can be sent in a pull request [here](https://github
 
 ## Credits
 
-Matty (Me) - [@mosk_i](https://twitter.com/mosk_i) - For writing the script
+Matty (Me) - [@mosk_i](https://twitter.com/moski_dev) - For writing the script
 
 Tihmstar - [@tihmstar](https://twitter.com/tihmstar) - For creating img4tool
