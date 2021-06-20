@@ -12,7 +12,7 @@ On your idevice:
 - OpenSSH\
 Install it with your package manager.
 ## Before running the script
-Start `iproxy` on the background:\
+Start `iproxy` in the background:\
 `iproxy 2222 22 > /dev/null &`\
 Change the script permisions to run it:\
 `chmod +x ./deverser-linux.sh`\
