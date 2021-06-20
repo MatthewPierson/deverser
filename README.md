@@ -23,7 +23,7 @@ Install it with your package manager.
 Start `iproxy` in the background:\
 `iproxy 2222 22 > /dev/null &`\
 Change the script permisions to run it:\
-`chmod +x ./deverser-linux.sh`\
+`chmod +x ./deverser-linux.sh`
 ## Now we are good to run the script
 `./deverser-linux.sh`
 if you did everything correctly, you should have a .shsh2 file in your folder.
