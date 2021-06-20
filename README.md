@@ -25,7 +25,7 @@ Start `iproxy` in the background:\
 Change the script permisions to run it:\
 `chmod +x ./deverser-linux.sh`\
 ## Now we are good to run the script
-`./deverser-linux.sh`\
+`./deverser-linux.sh`
 if you did everything correctly, you should have a .shsh2 file in your folder.
 # Credits
 - @moski_dev for the original script
