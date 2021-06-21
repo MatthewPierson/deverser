@@ -9,13 +9,13 @@ echo "[!] This script will allow you to use dumped blobs with futurerestore at a
 if test -f "/usr/local/bin/img4tool"; then
     echo "[!] Found img4tool at '/usr/local/bin/img4tool'!"
 else
-    echo "[#] img4tool is not installed, do you want Déverser to download and install img4tool? (If no then the script will close, img4tool is needed)"
+    echo "[#] img4tool is not installed, do you want Déverser to download and install img4tool? (If no then the script will close, img4tool is needed, you will need sudo for this installation to work properly)"
     echo "[*] Please enter 'Yes' or 'No':"
     read consent
     if [ $consent == 'Yes' ] | [ $consent == 'yes' ]; then
         echo "[!] Downloading latest img4tool from Tihmstar's repo..."
         latestBuild=$(curl --silent "https://api.github.com/repos/tihmstar/img4tool/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-        link="https://github.com/tihmstar/img4tool/releases/download/${latestBuild}/buildroot_macos-latest.zip"
+        link="https://github.com/tihmstar/img4tool/releases/download/${latestBuild}/buildroot_ubuntu-latest.zip"
         curl -L "$link" --output img4tool-latest.zip
         mkdir img4tool
         unzip -q img4tool-latest.zip -d img4tool
@@ -37,15 +37,12 @@ else
         exit
     fi  
 fi
-echo "[!] Please enter your device's IP address (Found in wifi settings)..."
-read ip
-echo "Device's IP address is ${ip}"
-echo "[*] Assuming given IP to be correct, if connecting to the device fails ensure you entered the IP correctly and have OpenSSh installed..."
+echo "[!] This script will use iproxy! please make sure to run "iproxy 2222 44" in another session for this to work!"
 echo "[!] Please enter the device's root password (Default is 'alpine')..."
-ssh root@${ip} -p 2222 "cat /dev/rdisk1 | dd of=dump.raw bs=256 count=$((0x4000))" &> /dev/null
+ssh root@$localhost -p 2222 "cat /dev/rdisk1 | dd of=dump.raw bs=256 count=$((0x4000))" &> /dev/null
 echo "[!] Dumped onboard SHSH to device, about to copy to this machine..."
 echo "[!] Please enter the device's root password again (Default is 'alpine')..."
-scp -P 2222 root@${ip}:dump.raw dump.raw &> /dev/null
+scp -P 2222 root@$localhost:dump.raw dump.raw &> /dev/null
 if test -f "dump.raw"; then
     echo ""
 else
