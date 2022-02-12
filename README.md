@@ -21,7 +21,7 @@ img4tool installed (If img4tool is not installed, the script will download the l
 
 ## Usage
 
-1. Either run `git clone https://github.com/joshuah345/deverser.git` and extract to a folder on your machine
+1. Either run `git clone https://github.com/joshuah345/deverser.git` and extract to a folder on your machine or download the latest release zip.
 2. 'cd' to the deverser folder and then run 'chmod +x deverser.sh'
 3. Run './deverser.sh'
 4. Follow what the script asks you to do (Mostly just entering your device's IP address and root password for SSH/SCP)
