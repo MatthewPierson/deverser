@@ -9,8 +9,6 @@ This script simply dumps iBoot from /dev/rdisk1 on the device, copies the dump t
 
 Even though this script will give you valid SHSH for the currently installed iOS version on your device, you are still limited by signed SEP compatiblity when restoring/downgrading with this dumped SHSH, so please bare that in mind when using this script.
 
-Déverser is just a small project I made in 2 hours while I was bored, if it's useful to someone then that's great, I hope you enjoy it! Don't expect fast support or any features to be added to this script, it works as-is and that's all I care about.
-
 ## Requirements
 
 A Linux or macOS machine (OS version shouldn't matter as long as img4tool supports it)
