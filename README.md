@@ -3,7 +3,7 @@ Simple script to dump onboard SHSH with a valid Generator for iOS devices (now w
 
 ## What is this/What does this do
 
-Déverser is a simple macOS script to dump onboard SHSH from iOS devices and convert it to useable SHSH which contains a generator! This is different to just dumping 'ApTicket.der' from the device's filesystem, like some jailbreaks such as Unc0ver allow for, as the 'ApTicket.der' doesn't contain the generator for the ApNonce it is valid for, meaning restores/downgrades using converted ApTicket.der's are not possible unless you know the generator.
+Déverser is a simple script to dump onboard SHSH from iOS devices and convert it to useable SHSH which contains a generator! This is different to just dumping 'ApTicket.der' from the device's filesystem, like some jailbreaks such as Unc0ver allow for, as the 'ApTicket.der' doesn't contain the generator for the ApNonce it is valid for, meaning restores/downgrades using converted ApTicket.der's are not possible unless you know the generator.
 
 This script simply dumps iBoot from /dev/rdisk1 on the device, copies the dump to your computer then converts the dump to valid SHSH using [img4tool](https://github.com/tihmstar/img4tool). This is all possible and easy to do manually, this script just allows for those who are less comfortable with the command line or less knowledgeable to have a simple method to dump onboard SHSH.
 
@@ -35,7 +35,7 @@ Any ideas/fixes/improvements can be sent in a pull request [here](https://github
 ## Credits
 
 Matty - [@mosk_i](https://twitter.com/moski_dev) - For writing the script
-original can be found [here](https://github.com/MatthewPierson/deverser/pulls)
+original can be found [here](https://github.com/MatthewPierson/deverser/)
 
 Superuser1958 - linux edit
 
