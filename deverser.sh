@@ -3,30 +3,51 @@
 if test -f "dump.raw"; then
     rm -rf dump.raw
 fi
-echo ""
-echo "[!] Welcome to Déverser, a simple script to dump onboard SHSH (Blobs) with a valid Generator for iOS devices..."
-echo "[!] This script will allow you to use dumped blobs with futurerestore at a later date (depending on SEP compatibility)..."
-if test -f "/usr/local/bin/img4tool"; then
-    echo "[!] Found img4tool at '/usr/local/bin/img4tool'!"
+cat << "intro"
+[!] Welcome to Déverser, a simple script to dump onboard SHSH (Blobs) with a valid Generator for iOS devices...
+[!] This script will allow you to use dumped blobs with futurerestore at a later date (depending on SEP compatibility)...
+intro
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    OS=macos
+    echo "[!] macOS detected!"
+    elif [[ $OSTYPE == 'Linux'* ]]; then
+    OS=ubuntu
+    echo "[!] Linux detected!"
+else
+    echo "Not running on macOS or Linux. exiting..."
+    exit 1
+fi
+
+if which curl >/dev/null; then
+    echo "[i] curl is installed!"
+else
+    echo "[!] Please install curl before running this script"
+    exit 2
+fi
+
+if which img4tool >/dev/null; then
+    echo "[!] Found img4tool at $(which img4tool) !"
 else
     echo "[#] img4tool is not installed, do you want Déverser to download and install img4tool? (If no then the script will close, img4tool is needed)"
     echo "[*] Please enter 'Yes' or 'No':"
     read consent
-    if [ $consent == 'Yes' ] | [ $consent == 'yes' ]; then
+    if [ $consent == 'Yes' ] || [ $consent == 'yes' ]; then
         echo "[!] Downloading latest img4tool from Tihmstar's repo..."
         latestBuild=$(curl --silent "https://api.github.com/repos/tihmstar/img4tool/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-        link="https://github.com/tihmstar/img4tool/releases/download/${latestBuild}/buildroot_macos-latest.zip"
+        link="https://github.com/tihmstar/img4tool/releases/download/${latestBuild}/buildroot_${OS}-latest.zip"
         curl -L "$link" --output img4tool-latest.zip
         mkdir img4tool
         unzip -q img4tool-latest.zip -d img4tool
         echo "[*] Terminal may ask for permission to move the files into '/usr/local/bin' and '/usr/local/include', please enter your password if it does..."
-        cp img4tool/buildroot_macos-latest/usr/local/bin/img4tool /usr/local/bin/img4tool
-        cp -R img4tool/buildroot_macos-latest/usr/local/include/img4tool /usr/local/include
+        cp img4tool/buildroot_${OS}-latest/usr/local/bin/img4tool /usr/local/bin/img4tool
+        cp -R img4tool/buildroot_${OS}-latest/usr/local/include/img4tool /usr/local/include
         chmod +x /usr/local/bin/img4tool
         rm -rf img4tool-latest.zip
         rm -rf img4tool/
+        
         echo "[*] Installed img4tool"
-    elif [ $consent == 'No' ] | [ $consent == 'no' ]; then
+        elif [ $consent == 'No' ] || [ $consent == 'no' ]; then
         echo "[#] img4tool is needed for this script to work..."
         echo "[#] If you want to manually install it, you can download img4tool from 'https://github.com/tihmstar/img4tool/releases/latest' and manually move the files to the correct locations..."
         exit
@@ -35,7 +56,7 @@ else
         echo "[#] img4tool is needed for this script to work..."
         echo "[#] If you want to manually install it, you can download img4tool from 'https://github.com/tihmstar/img4tool/releases/latest' and manually move the files to the correct locations..."
         exit
-    fi  
+    fi
 fi
 echo "[!] Please enter your device's IP address (Found in wifi settings)..."
 read ip
@@ -61,7 +82,8 @@ fi
 ecid=$(img4tool -s dumped.shsh | grep "ECID" | cut -c13-)
 mv dumped.shsh ${ecid}.dumped.shsh # Allows multiple devices to be dumped as each dump/converted SHSH will have a filename that links the SHSH to the device
 generator=$(cat ${ecid}.dumped.shsh | grep "<string>0x" | cut -c10-27)
+
 echo "[!] SHSH should be dumped successfully at '${ecid}.dumped.shsh' (The number in the filename is your devices ECID)!"
 echo "[!] Your Generator for the dumped SHSH is: ${generator}"
 echo "[@] Written by Matty (@mosk_i) - Enjoy!"
-echo ""
+exit 0
