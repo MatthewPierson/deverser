@@ -1,5 +1,5 @@
 # Déverser
-Simple macOS script to dump onboard SHSH with a valid Generator for iOS devices
+Simple script to dump onboard SHSH with a valid Generator for iOS devices (now with Linux support!)
 
 ## What is this/What does this do
 
