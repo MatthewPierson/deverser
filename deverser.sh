@@ -40,9 +40,15 @@ else
         mkdir img4tool
         unzip -q img4tool-latest.zip -d img4tool
         echo "[*] Terminal may ask for permission to move the files into '/usr/local/bin' and '/usr/local/include', please enter your password if it does..."
+        if [[ $OS = ubuntu ]]; then
+        sudo cp img4tool/buildroot_${OS}-latest/usr/local/bin/img4tool /usr/local/bin/img4tool
+        sudo cp -R img4tool/buildroot_${OS}-latest/usr/local/include/img4tool /usr/local/include
+        sudo chmod +x /usr/local/bin/img4tool
+        else
         cp img4tool/buildroot_${OS}-latest/usr/local/bin/img4tool /usr/local/bin/img4tool
         cp -R img4tool/buildroot_${OS}-latest/usr/local/include/img4tool /usr/local/include
-        chmod +x /usr/local/bin/img4tool
+         chmod +x /usr/local/bin/img4tool
+         fi
         rm -rf img4tool-latest.zip
         rm -rf img4tool/
         
