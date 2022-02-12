@@ -7,11 +7,10 @@ cat << "intro"
 [!] Welcome to Déverser, a simple script to dump onboard SHSH (Blobs) with a valid Generator for iOS devices...
 [!] This script will allow you to use dumped blobs with futurerestore at a later date (depending on SEP compatibility)...
 intro
-
+unamestr=$(uname)
 if [[ $OSTYPE == 'darwin'* ]]; then
     OS=macos
     echo "[!] macOS detected!"
-    unamestr=$(uname)
     elif [[ $unamestr = Linux ]]; then
     OS=ubuntu
     echo "[!] Linux detected!"
