@@ -11,7 +11,8 @@ intro
 if [[ $OSTYPE == 'darwin'* ]]; then
     OS=macos
     echo "[!] macOS detected!"
-    elif [[ $OSTYPE == 'Linux'* ]]; then
+    unamestr=$(uname)
+    elif [[ $unamestr = Linux ]]; then
     OS=ubuntu
     echo "[!] Linux detected!"
 else
