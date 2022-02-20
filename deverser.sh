@@ -60,7 +60,7 @@ read -r ip
 echo "Device's IP address is $ip"
 echo "[*] Assuming given IP to be correct, if connecting to the device fails ensure you entered the IP correctly and have OpenSSh installed..."
 echo "[!] Please enter the device's root password (Default is 'alpine')..."
-ssh root@$ip "cat /dev/rdisk1 | dd of=dump.raw bs=256 count=$((0x4000))" >/dev/null 2>&1
+ssh root@$ip 'cat /dev/rdisk1 | dd of=dump.raw bs=256 count=$((0x4000))' >/dev/null 2>&1
 echo "[!] Dumped onboard SHSH to device, about to copy to this machine..."
 echo "[!] Please enter the device's root password again (Default is 'alpine')..."
 if scp root@$ip:dump.raw dump.raw >/dev/null 2>&1; then
