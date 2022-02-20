@@ -43,7 +43,7 @@ else
             IMG4TOOL_TEMP=$(mktemp -d 'img4tool.XXXXXXX')
             unzip -q img4tool-latest.zip -d "$IMG4TOOL_TEMP"
             echo "[*] Terminal may ask for permission to move the files into '/usr/local/bin' and '/usr/local/include', please enter your password if it does..."
-            sudo install -Dm755 "$IMG4TOOL_TEMP/buildroot_$OS-latest/usr/local/bin/img4tool" /usr/local/bin/img4tool
+            sudo install -m755 "$IMG4TOOL_TEMP/buildroot_$OS-latest/usr/local/bin/img4tool" /usr/local/bin/img4tool
             sudo cp -R "$IMG4TOOL_TEMP/buildroot_$OS-latest/usr/local/include/img4tool" /usr/local/include
 
             rm -rf img4tool-latest.zip "$IMG4TOOL_TEMP"
