@@ -36,7 +36,7 @@ else
     read -r consent
     case $consent in 
         [Yy]* )
-            echo "[!] Downloading latest img4tool from Tihmstar's repo..."
+            echo "[!] Downloading latest img4tool from tihmstar's repo..."
             latestBuild=$(curl --silent "https://github.com/tihmstar/img4tool/releases" | grep -Eo "/tihmstar/img4tool/releases/download/\d+" | head -1)
             curl -L "https://github.com/$latestBuild/buildroot_$OS-latest.zip" -o img4tool-latest.zip
             
