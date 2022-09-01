@@ -11,18 +11,31 @@ Even though this script will give you valid SHSH for the currently installed iOS
 
 ## Requirements
 
-A Linux or macOS machine (OS version shouldn't matter as long as img4tool supports it)
+A Linux or macOS machine (Use the .sh file for these platforms) or Windows (use the .ps1 file)
 
 A jailbroken device with OpenSSH installed (Specific jailbreak doesn't matter, E.G checkra1n, Unc0ver, chimera, etc)
 
-img4tool installed (If img4tool is not installed, the script will download the latest release from Tihmstar's repo and install it after getting the users permission)
+img4tool installed (If img4tool is not installed, the script will download (Windows) and install it (Linux and macOS) after getting the users permission)
 
-## Usage
+## Usage (.sh file)
 
 1. Either run `git clone https://github.com/joshuah345/deverser.git` and extract to a folder on your machine or download the latest release zip.
 2. 'cd' to the deverser folder and then run 'chmod +x deverser.sh'
 3. Run './deverser.sh'
 4. Follow what the script asks you to do (Mostly just entering your device's IP address and root password for SSH/SCP)
+
+## Usage (.ps1/Windows)
+
+
+**This script requires the Windows 10 Spring Update or newer to be installed. Else you must install OpenSSH on your pc manually.**
+
+1. Download the latest release 
+
+2. By default, script execution is disabled for security reasons. to tempoarily bypass this restriction, you must run deverser like this:
+
+`powershell.exe -noprofile -executionpolicy bypass -file "deverser.ps1"`
+
+3. Replace `"deverser.ps1"` with the path to the deverser script.
 
 ## Issues/Bugs/Fixes/Improvements
 
@@ -33,8 +46,8 @@ Any ideas/fixes/improvements can be sent in a pull request [here](https://github
 ## Credits
 
 Matty - [@mosk_i](https://twitter.com/moski_dev) - For writing the script
-original can be found [here](https://github.com/MatthewPierson/deverser/)
+Original macOS script can be found [here.](https://github.com/MatthewPierson/deverser/)
 
-Superuser1958 - linux edit
+Superuser1958 - changes for Linux and Creation of PowerShell Script
 
 Tihmstar - [@tihmstar](https://twitter.com/tihmstar) - For creating img4tool
