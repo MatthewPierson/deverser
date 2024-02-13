@@ -7,15 +7,15 @@ Déverser is a simple script to dump onboard SHSH from iOS devices and convert i
 
 This script simply dumps iBoot from /dev/rdisk1 on the device, copies the dump to your computer then converts the dump to valid SHSH using [img4tool](https://github.com/tihmstar/img4tool). This is all possible and easy to do manually, this script just allows for those who are less comfortable with the command line or less knowledgeable to have a simple method to dump onboard SHSH.
 
-Even though this script will give you valid SHSH for the currently installed iOS version on your device, you are still limited by signed SEP compatiblity when restoring/downgrading with this dumped SHSH, so please bare that in mind when using this script.
+Even though this script will give you valid SHSH for the currently installed iOS version on your device, you are still limited by signed SEP and Baseband compatiblity when restoring/downgrading with this dumped SHSH, so please bare that in mind when using this script.
 
 ## Requirements
 
-A Linux or macOS machine (Use the .sh file for these platforms) or Windows (use the .ps1 file)
+A Linux or macOS machine (Use the .sh file for these platforms) (optional if using a modern jb)
 
-A jailbroken device with OpenSSH installed (Specific jailbreak doesn't matter, E.G checkra1n, Unc0ver, chimera, etc)
+if not running on device: A jailbroken device with a ssh server running (typically OpenSSH)
 
-img4tool installed (If img4tool is not installed, the script will download (Windows) and install it (Linux and macOS) after getting the users permission)
+img4tool installed (If img4tool is not installed, the script will download and install it fter getting the users permission
 
 ## Usage (.sh file)
 
@@ -35,6 +35,6 @@ Any ideas/fixes/improvements can be sent in a pull request [here](https://github
 Matty - [@mosk_i](https://twitter.com/moski_dev) - For writing the script
 Original macOS script can be found [here.](https://github.com/MatthewPierson/deverser/)
 
-Superuser1958 - changes for Linux
+Superuser1958 - changes for Linux, rootless and on-device mode
 
 Tihmstar - [@tihmstar](https://twitter.com/tihmstar) - For creating img4tool
