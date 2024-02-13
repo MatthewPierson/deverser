@@ -67,7 +67,7 @@ get_firmware_ver() {
         firmware_version="$(sw_vers -productVersion)"
     else
         pre_echo W "Enter the password for the mobile user if prompted."
-        firmware_version="$(ssh mobile@$ip -p "$port_number" 'sw_vers -productVersion')"
+        firmware_version="$(ssh mobile@$ip -p $port_number 'sw_vers -productVersion')"
     fi
 }
 
@@ -87,7 +87,7 @@ detect_jbtype() {
         pre_echo "Please choose your jailbreak type below:"
         pre_echo "1. Rootless\n2. Roothide\n3. Rootful"
         while [ -z "$jbtype" ]; do
-        read -r jbtype
+            read -r jbtype
             case $jbtype in
 
             1 | rootless | Rootless)
@@ -229,7 +229,7 @@ dump_remote() {
 
     pre_echo W "Please enter the device's $ssh_user user password."
 
-    if ssh -t $ssh_user@$ip -p $port_number 'sudo cat /dev/disk1 | dd of=deverser_dump.raw bs=256 count=$((0x4000))' >/dev/null 2>&1; then
+    if ssh -t $ssh_user@$ip -p $port_number 'sudo cat /dev/disk1 | dd of=deverser_dump.raw bs=256 count=$((0x4000))'; then
 
         pre_echo W "Dumped onboard SHSH to device, about to copy to this machine..."
         pre_echo W "Please enter the device's $ssh_user password again."
@@ -260,7 +260,7 @@ dump_local() {
         sudo cat /dev/disk1 | dd of=deverser_dump.raw bs=256 count=$((0x4000)) >/dev/null
     fi
 
-    if [ -f deverser_dump.raw ]; then
+    if [ -f "./deverser_dump.raw" ]; then
         pre_echo "deverser_dump.raw created. about to convert to SHSH."
         img4tool --convert -s dumped.shsh deverser_dump.raw >/dev/null 2>&1
         if img4tool -s dumped.shsh | grep -q 'failed'; then
@@ -274,7 +274,7 @@ dump_local() {
 finisher() {
     ecid=$(img4tool -s dumped.shsh | grep "ECID" | cut -c13-)
     mv dumped.shsh "$firmware_version-$ecid".dumped.shsh # Allows multiple devices to be dumped as each dump/converted SHSH will have a filename that links the SHSH to the device
-    generator="$(cat "$ecid".dumped.shsh | grep "<string>0x" | cut -c10-27)"
+    generator="$(cat "$firmware_version-$ecid".dumped.shsh | grep "<string>0x" | cut -c10-27)"
 
     pre_echo W "SHSH should be dumped successfully at '$firmware_version-$ecid.dumped.shsh' (The number in the beginning of the filename after the version is your devices' ECID)!"
     pre_echo W "Your generator for the dumped SHSH is: $generator"
@@ -295,7 +295,7 @@ if [ "$on_device" = "1" ]; then
     detect_jbtype
     dump_local $jbtype
 else
-    dump_remote 
+    dump_remote
 fi
 get_firmware_ver
 finisher
